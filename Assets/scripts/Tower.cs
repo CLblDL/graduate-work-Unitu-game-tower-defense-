@@ -5,11 +5,18 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     private Transform _target;
+
+    [Header("ттх башни")]
+
     private float _distancsFire = 20f;
-    private float _speedRotation = 15f;
+    public float _fireRate = 1f;
+    private float _fireCountdown = 0f;
+
+    [Header("Захват цели")]
 
     public string _enemyTag = "Enemy";
     public Transform _headPrefab;
+    private float _speedRotation = 15f;
 
     void Start()
     {
@@ -57,6 +64,18 @@ public class Tower : MonoBehaviour
         Quaternion directionRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(_headPrefab.rotation, directionRotation, Time.deltaTime * _speedRotation).eulerAngles;
         _headPrefab.rotation = Quaternion.Euler(-90f, rotation.y, 0f);
+
+        if(_fireCountdown <= 0f)
+        {
+            Shoot();
+            _fireCountdown = 1f / _fireRate;
+        }
+        _fireCountdown -= Time.deltaTime;
+    }
+
+    private void Shoot()
+    {
+
     }
 
     private void OnDrawGizmosSelected()
