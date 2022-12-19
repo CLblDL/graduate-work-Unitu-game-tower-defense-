@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
     public Transform _enemyPrefabs;
     public Transform _spawnPoint;
 
-    public float _timeBetweenSpawn = 5f;
-    private float _contdown = 3f;
+    public Text _waveTimer;
+
+    public float _timeBetweenSpawn = 5.9f;
+    private float _contdown = 3.5f;
     private int _waveNumber = 0;
 
     private void Update()
@@ -19,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(SpawnWave());
             _contdown = _timeBetweenSpawn;
         }
+
+        _waveTimer.text = Mathf.RoundToInt(_contdown).ToString();
 
         _contdown -= Time.deltaTime;
     }
