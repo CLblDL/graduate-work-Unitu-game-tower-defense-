@@ -16,7 +16,7 @@ public class Tower : MonoBehaviour
 
     public string _enemyTag = "Enemy";
     public Transform _headPrefab;
-    private float _speedRotation = 15f;
+    private float _speedRotation = 5f;
 
     [Header("Для выстрела")]
 
@@ -53,18 +53,14 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(UpdateTarget());
-
+        
         if (_target == null)
         {
+            StartCoroutine(UpdateTarget());
             return;
         }
-        // берется позиция и башня крутится за захваченной целью
-        //Lerp должен плавно врашать, но пока это не происходит
-        Vector3 direction = _target.position - transform.position;
-        Quaternion directionRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(_headPrefab.rotation, directionRotation, Time.deltaTime * _speedRotation).eulerAngles;
-        _headPrefab.rotation = Quaternion.Euler(-90f, rotation.y, 0f);
+
+        LockTargetOnEnemy();
 
         if(_fireCountdown <= 0f)
         {
@@ -72,6 +68,19 @@ public class Tower : MonoBehaviour
             _fireCountdown = 1f / _fireRate;
         }
         _fireCountdown -= Time.deltaTime;
+        
+    }
+
+    private void LockTargetOnEnemy()
+    {
+        // берется позиция и башня крутится за захваченной целью
+        //Lerp должен плавно врашать, но пока это не происходит
+        Vector3 direction = (_target.position - transform.position).normalized;
+        Quaternion directionRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        _headPrefab.rotation = Quaternion.Lerp(_headPrefab.rotation, directionRotation, Time.deltaTime * _speedRotation);
+
+        //Vector3 rotation = Quaternion.Lerp(_headPrefab.rotation, directionRotation, Time.deltaTime * _speedRotation).eulerAngles;
+        //_headPrefab.rotation = Quaternion.Euler(-90f, rotation.y, 0f);
     }
 
     private void Shoot()
