@@ -18,10 +18,11 @@ public class Tower : MonoBehaviour
     public Transform _headPrefab;
     private float _speedRotation = 15f;
 
-    void Start()
-    {
-        
-    }
+    [Header("Для выстрела")]
+
+    public GameObject _bulletPrefabs;
+    public Transform _firePoint;
+
 
     private IEnumerator UpdateTarget()
     {
@@ -75,7 +76,11 @@ public class Tower : MonoBehaviour
 
     private void Shoot()
     {
+        GameObject newBullet = (GameObject)Instantiate(_bulletPrefabs, _firePoint.position, _firePoint.rotation);
+        Bullet bullet = newBullet.GetComponent<Bullet>();
 
+        if(bullet != null)
+            bullet.FindTargetEnemy(_target);
     }
 
     private void OnDrawGizmosSelected()
