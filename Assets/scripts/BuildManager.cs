@@ -8,19 +8,22 @@ public class BuildManager : MonoBehaviour
 
     public static BuildManager _instance;
     public GameObject _standartTower;
+    public GameObject _nextTower;
 
     private void Awake()
     {
         _instance = this;
     }
 
-    private void Start()
-    {
-        _towerToBuild = _standartTower;
-    }
-
     public GameObject GetTowerToBuild()
     {
         return _towerToBuild;
     }
+
+    public void SetTowerToBuild(GameObject curentTower)
+    {
+        _towerToBuild = curentTower;
+    }
+
+    
 }
