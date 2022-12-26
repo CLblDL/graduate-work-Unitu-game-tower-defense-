@@ -360,6 +360,7 @@
 "Assets/scripts/Enemy.cs"
 "Assets/scripts/EnemySpawner.cs"
 "Assets/scripts/Node.cs"
+"Assets/scripts/PlayerStats.cs"
 "Assets/scripts/Shop.cs"
 "Assets/scripts/ToweProject.cs"
 "Assets/scripts/Tower.cs"

@@ -2845,6 +2845,7 @@ GameObject:
   - component: {fileID: 343792745}
   - component: {fileID: 343792744}
   - component: {fileID: 343792746}
+  - component: {fileID: 343792747}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -2897,6 +2898,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _standartTower: {fileID: 6850617941383465527, guid: 504921e6ebd8fc64f9f4e39c136a63af, type: 3}
   _nextTower: {fileID: 6850617941383465527, guid: 7fe8759d5182a80438447efaf559d5fc, type: 3}
+--- !u!114 &343792747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343792743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823b003984663f64e9d4fd6d1cc80e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startMoney: 400
 --- !u!4 &355064435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6379451480125704803, guid: 20960ea318e5bdc4195dbad25014ead8, type: 3}

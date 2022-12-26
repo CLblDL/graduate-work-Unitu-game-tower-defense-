@@ -6,5 +6,5 @@ using UnityEngine;
 public class ToweProject
 {
     public GameObject _towerPrefab;
-    public float _towerCost;
+    public int _towerCost;
 }
