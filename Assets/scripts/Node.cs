@@ -7,12 +7,17 @@ public class Node : MonoBehaviour
 {
     public Color _selectNideColor;
     public Color _selectNoClouseNideColor;
-
-    private GameObject _curentTower;
+    [Header("Необязательно")]
+    public GameObject _curentTower;
     private Renderer _rend;
     private Color _satrtColor;
     private Vector3 _offsetPosition = new Vector3(0f, 0.5f, 0f);
     private BuildManager _buildManager;
+
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position + _offsetPosition;
+    }
 
     private void Start()
     {
@@ -26,7 +31,7 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (_buildManager.GetTowerToBuild() == null)
+        if (!_buildManager.CanBuild)
         {
             return;
         }
@@ -37,8 +42,7 @@ public class Node : MonoBehaviour
             return;
         }
 
-        GameObject towerToBuild = _buildManager.GetTowerToBuild();
-        _curentTower = Instantiate(towerToBuild, transform.position + _offsetPosition, transform.rotation);
+        _buildManager.BuildTowerOn(this);
     }
 
     private void OnMouseEnter()
@@ -46,7 +50,7 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (_buildManager.GetTowerToBuild() == null)
+        if (!_buildManager.CanBuild)
         {
             return;
         }

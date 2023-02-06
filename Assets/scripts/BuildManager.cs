@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    private GameObject _towerToBuild;
+    private ToweProject _towerToBuild;
 
     public static BuildManager _instance;
     public GameObject _standartTower;
     public GameObject _nextTower;
+
+    public bool CanBuild { get { return _towerToBuild != null; } }
 
     private void Awake()
     {
         _instance = this;
     }
 
-    public GameObject GetTowerToBuild()
+    public void BuildTowerOn(Node node)
     {
-        return _towerToBuild;
+        if(PlayerStats.Money < _towerToBuild._towerCost)
+        {
+            Debug.Log("Недостаточно денег");
+            return;
+        }
+
+        PlayerStats.Money -= _towerToBuild._towerCost;
+
+        GameObject tower = Instantiate(_towerToBuild._towerPrefab, node.GetBuildPosition(), Quaternion.identity);
+        node._curentTower = tower;
+
+        Debug.Log("Осталось денег" + PlayerStats.Money);
     }
 
-    public void SetTowerToBuild(GameObject curentTower)
+    public void SelectTowerToBuild(ToweProject selectedProject)
     {
-        _towerToBuild = curentTower;
+        _towerToBuild = selectedProject;
     }
-
-    
 }

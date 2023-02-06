@@ -16,11 +16,11 @@ public class Shop : MonoBehaviour
 
     public void ByStandartTower()
     {
-        _buildManager.SetTowerToBuild(_buildManager._standartTower);
+        _buildManager.SelectTowerToBuild(_standartTower);
     }
 
     public void ByNextTower()
     {
-        _buildManager.SetTowerToBuild(_buildManager._nextTower);
+        _buildManager.SelectTowerToBuild(_nextTower);
     }
 }
