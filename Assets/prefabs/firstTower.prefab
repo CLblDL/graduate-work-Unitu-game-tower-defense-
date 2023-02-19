@@ -245,10 +245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1702cbd289bca4e87ad59798ce530e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 1
+  _distancsFire: 50
+  _fireRate: 0.5
   _enemyTag: Enemy
   _headPrefab: {fileID: 7728598129928999932}
-  _bulletPrefabs: {fileID: 1862478278912688436, guid: b7bfbd5c69f40e747bbe663caae6c4ea, type: 3}
+  _bulletPrefabs: {fileID: 1862478278912688436, guid: 20693d3b0bade1745b1803f3ee5584f3, type: 3}
   _firePoint: {fileID: 3141627835950103357}
 --- !u!1 &7218788591932721139
 GameObject:

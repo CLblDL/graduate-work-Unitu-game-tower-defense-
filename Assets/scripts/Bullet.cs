@@ -6,7 +6,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Transform _target;
+    private string _enemyTag = "Enemy";
 
+    public float _explosionRadius = 0f;
     public float _bulletSpeed = 50f;
     public GameObject _impactBulletEffect;
 
@@ -33,13 +35,41 @@ public class Bullet : MonoBehaviour
         }
 
         transform.Translate(direction.normalized * distanceFrame, Space.World);
+        transform.LookAt(_target);
     }
 
     private void StrikeTarget()
     {
         GameObject effect = Instantiate(_impactBulletEffect, transform.position, transform.rotation);
         Destroy(effect, 2f);
-        Destroy(_target.gameObject);    //после первого попадания уничтожаем противника
+
+        if(_explosionRadius > 0f)
+        {
+            EnemyExplode();
+        }
+        else
+        {
+            EnemyDamage(_target);
+        }
+
         Destroy(gameObject);
+    }
+
+    private void EnemyExplode()
+    {
+        Collider[] collidersEnemy = Physics.OverlapSphere(transform.position, _explosionRadius);
+        foreach (Collider collider in collidersEnemy)
+        {   
+            if (collider.CompareTag(_enemyTag))
+            {
+                EnemyDamage(collider.transform);
+            }
+        }
+        
+    }
+
+    private void EnemyDamage(Transform enemy)
+    {
+        Destroy(enemy.gameObject); //после первого попадания уничтожаем противника
     }
 }

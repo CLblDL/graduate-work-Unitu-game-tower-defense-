@@ -8,13 +8,13 @@ public class Tower : MonoBehaviour
 
     [Header("ттх башни")]
 
-    private float _distancsFire = 20f;
+    public float _distancsFire = 20f;
     public float _fireRate = 1f;
     private float _fireCountdown = 0f;
 
     [Header("Захват цели")]
 
-    public string _enemyTag = "Enemy";
+    private string _enemyTag = "Enemy";
     public Transform _headPrefab;
     private float _speedRotation = 15f;
 
