@@ -23,9 +23,11 @@ public class EnemySpawner : MonoBehaviour
             _contdown = _timeBetweenSpawn;
         }
 
-        _waveTimer.text = Mathf.RoundToInt(_contdown).ToString();
-
         _contdown -= Time.deltaTime;
+
+        _contdown = Math.Clamp(_contdown, 0f, Mathf.Infinity);
+
+        _waveTimer.text = string.Format("{0:00.00}", _contdown);
     }
 
     private IEnumerator SpawnWave()

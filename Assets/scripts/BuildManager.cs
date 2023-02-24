@@ -11,6 +11,7 @@ public class BuildManager : MonoBehaviour
     public GameObject _nextTower;
 
     public bool CanBuild { get { return _towerToBuild != null; } }
+    public bool HasMoney { get { return PlayerStats.Money >= _towerToBuild._towerCost; } }
 
     private void Awake()
     {

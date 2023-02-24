@@ -55,8 +55,10 @@ public class Node : MonoBehaviour
             return;
         }
 
-        if (_curentTower == null)
+        if (_buildManager.HasMoney && _curentTower == null)
+        {
             _rend.material.color = _selectNideColor;
+        }
         else
             _rend.material.color = _selectNoClouseNideColor;
     }
