@@ -11,7 +11,7 @@ public class BuildManager : MonoBehaviour
     public GameObject _nextTower;
 
     public bool CanBuild { get { return _towerToBuild != null; } }
-    public bool HasMoney { get { return PlayerStats.Money >= _towerToBuild._towerCost; } }
+    public bool HasMoney { get { return PlayerStats.HaveMoneyOnThisTower(_towerToBuild._towerCost); } }
 
     private void Awake()
     {
@@ -20,18 +20,18 @@ public class BuildManager : MonoBehaviour
 
     public void BuildTowerOn(Node node)
     {
-        if(PlayerStats.Money < _towerToBuild._towerCost)
+        if(!HasMoney)
         {
             Debug.Log("Недостаточно денег");
             return;
         }
 
-        PlayerStats.Money -= _towerToBuild._towerCost;
+        PlayerStats.BuyTower(_towerToBuild._towerCost);
 
         GameObject tower = Instantiate(_towerToBuild._towerPrefab, node.GetBuildPosition(), Quaternion.identity);
         node._curentTower = tower;
 
-        Debug.Log("Осталось денег" + PlayerStats.Money);
+        Debug.Log("Осталось денег" + PlayerStats.ShowMoneyNow());
     }
 
     public void SelectTowerToBuild(ToweProject selectedProject)

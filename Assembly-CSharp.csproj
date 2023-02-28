@@ -61,13 +61,15 @@
     <Compile Include="Assets\scripts\EnemySpawner.cs" />
     <Compile Include="Assets\scripts\Node.cs" />
     <Compile Include="Assets\scripts\Waypoints.cs" />
+    <Compile Include="Assets\scripts\MoneyUI.cs" />
     <Compile Include="Assets\scripts\Enemy.cs" />
     <Compile Include="Assets\scripts\PlayerStats.cs" />
     <Compile Include="Assets\scripts\CameraControler.cs" />
     <Compile Include="Assets\scripts\Bullet.cs" />
     <Compile Include="Assets\scripts\ToweProject.cs" />
     <Compile Include="Assets\scripts\Tower.cs" />
-    <Compile Include="Assets\MoneyUI.cs" />
+    <Compile Include="Assets\scripts\LivesUI.cs" />
+    <Compile Include="Assets\scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
         if(_wayPointInedx >= Waypoints.points.Length - 1)
         {
             Destroy(gameObject);
+            PlayerStats.TakeAweyLives(1);
             return;
         }
 
