@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private void LouseLevel()
+
+    public static void LouseLevel()
     {
-        
+        Debug.Log("End game!");
     }
 }

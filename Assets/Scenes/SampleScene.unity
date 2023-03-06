@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startMoney: 400
-  _startLives: 20
+  _startLives: 1
 --- !u!114 &343792748
 MonoBehaviour:
   m_ObjectHideFlags: 0

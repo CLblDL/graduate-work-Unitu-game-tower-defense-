@@ -6,6 +6,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float _speed = 10f;
+    public float _health = 100f;
+    public int _rewardFordestroy = 25;
+
+    public GameObject _deathEffect;
 
     private Transform _target;
     private int _wayPointInedx = 0;
@@ -24,6 +28,26 @@ public class Enemy : MonoBehaviour
         {
             GetWayNextPoint();
         }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        _health -= amount;
+
+        if(_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        PlayerStats.IncreaseMoney(_rewardFordestroy); // добавляем монету за уничтожение противника
+
+        GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Destroy(gameObject);
     }
 
     private void GetWayNextPoint()

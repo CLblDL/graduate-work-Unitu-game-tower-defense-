@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private GameManager _gameManager;
-
     private static int Money;
     public int _startMoney = 400;
 
@@ -30,7 +28,7 @@ public class PlayerStats : MonoBehaviour
         }
         if(Lives == 0)
         {
-            //_gameManager.LouseLevel(); 
+            GameManager.LouseLevel(); 
         }
     }
 
@@ -55,5 +53,10 @@ public class PlayerStats : MonoBehaviour
     public static void BuyTower(int towerCost)
     {
         Money -= towerCost;
+    }
+
+    public static void IncreaseMoney(int countMoney)
+    {
+        Money += countMoney;
     }
 }
