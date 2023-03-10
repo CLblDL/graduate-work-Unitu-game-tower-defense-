@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
 
     public ToweProject _standartTower;
     public ToweProject _nextTower;
+    public ToweProject _laserTower;
 
     private void Start()
     {
@@ -22,5 +23,10 @@ public class Shop : MonoBehaviour
     public void ByNextTower()
     {
         _buildManager.SelectTowerToBuild(_nextTower);
+    }
+
+    public void ByLaserTower()
+    {
+        _buildManager.SelectTowerToBuild(_laserTower);
     }
 }

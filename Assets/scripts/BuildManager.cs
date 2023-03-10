@@ -7,8 +7,6 @@ public class BuildManager : MonoBehaviour
     private ToweProject _towerToBuild;
 
     public static BuildManager _instance;
-    public GameObject _standartTower;
-    public GameObject _nextTower;
 
     public bool CanBuild { get { return _towerToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.HaveMoneyOnThisTower(_towerToBuild._towerCost); } }

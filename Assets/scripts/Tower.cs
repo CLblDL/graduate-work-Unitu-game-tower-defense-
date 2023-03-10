@@ -23,6 +23,11 @@ public class Tower : MonoBehaviour
     public GameObject _bulletPrefabs;
     public Transform _firePoint;
 
+    [Header("Для лазера")]
+
+    public bool _useLaser = false;
+    public LineRenderer _lineRendererLaser;
+
 
     private IEnumerator UpdateTarget()
     {
@@ -57,21 +62,50 @@ public class Tower : MonoBehaviour
 
         if (_target == null)
         {
+            if (_useLaser)
+            {
+                if (_lineRendererLaser.enabled)
+                {
+                    _lineRendererLaser.enabled = false;
+                }
+            }
+
             return;
         }
-        // берется позиция и башня крутится за захваченной целью
-        //Lerp должен плавно врашать, но пока это не происходит
+
+        LoockOnTarget();
+
+        if (_useLaser)
+        {
+            LaserOff();
+        }
+        else
+        {
+            if (_fireCountdown <= 0f)
+            {
+                Shoot();
+                _fireCountdown = 1f / _fireRate;
+            }
+            _fireCountdown -= Time.deltaTime;
+        }
+    }
+
+    private void LoockOnTarget() 
+    {
         Vector3 direction = _target.position - transform.position;
         Quaternion directionRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(_headPrefab.rotation, directionRotation, Time.deltaTime * _speedRotation).eulerAngles;
-        _headPrefab.rotation = Quaternion.Euler(-90f, rotation.y, 0f);
+        _headPrefab.rotation = Quaternion.Lerp(_headPrefab.rotation, directionRotation, Time.deltaTime * _speedRotation);
+    }
 
-        if(_fireCountdown <= 0f)
+    private void LaserOff()
+    {
+        if (!_lineRendererLaser.enabled)
         {
-            Shoot();
-            _fireCountdown = 1f / _fireRate;
+            _lineRendererLaser.enabled = true;
         }
-        _fireCountdown -= Time.deltaTime;
+
+        _lineRendererLaser.SetPosition(0, _firePoint.position);
+        _lineRendererLaser.SetPosition(1, _target.position);
     }
 
     private void Shoot()
