@@ -248,8 +248,10 @@ MonoBehaviour:
   _distancsFire: 20
   _fireRate: 1
   _headPrefab: {fileID: 7728598129928999932}
-  _bulletPrefabs: {fileID: 1862478278912688436, guid: b7bfbd5c69f40e747bbe663caae6c4ea, type: 3}
+  _bulletPrefabs: {fileID: 136330, guid: 6fbee9bbc70cde547ac1efbe8f04021b, type: 3}
   _firePoint: {fileID: 3141627835950103357}
+  _useLaser: 0
+  _lineRendererLaser: {fileID: 0}
 --- !u!1 &7218788591932721139
 GameObject:
   m_ObjectHideFlags: 0

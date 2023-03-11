@@ -28,7 +28,6 @@ public class Tower : MonoBehaviour
     public bool _useLaser = false;
     public LineRenderer _lineRendererLaser;
 
-
     private IEnumerator UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(_enemyTag);
@@ -103,6 +102,7 @@ public class Tower : MonoBehaviour
         {
             _lineRendererLaser.enabled = true;
         }
+
 
         _lineRendererLaser.SetPosition(0, _firePoint.position);
         _lineRendererLaser.SetPosition(1, _target.position);
