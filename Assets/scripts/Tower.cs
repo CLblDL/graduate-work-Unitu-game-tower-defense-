@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     private Transform _target;
+    private Enemy _targetEnemy;
 
     [Header("ттх башни")]
 
@@ -25,6 +26,8 @@ public class Tower : MonoBehaviour
 
     [Header("Для лазера")]
 
+    public float _gamageLaser = 30f;
+    public float _debuffSpeedEnemy = 0.5f;
     public bool _useLaser = false;
     public LineRenderer _lineRendererLaser;
 
@@ -46,6 +49,7 @@ public class Tower : MonoBehaviour
         if(nearEnemy != null && shortDistatnce <= _distancsFire)
         {
             _target = nearEnemy.transform;
+            _targetEnemy = nearEnemy.GetComponent<Enemy>();
         }
         else
         {
@@ -59,14 +63,11 @@ public class Tower : MonoBehaviour
     {
         StartCoroutine(UpdateTarget());
 
-        if (_target == null)
+        if (_target == null )
         {
-            if (_useLaser)
-            {
-                if (_lineRendererLaser.enabled)
-                {
-                    _lineRendererLaser.enabled = false;
-                }
+            if (_useLaser && _lineRendererLaser.enabled)
+            {               
+                    _lineRendererLaser.enabled = false;               
             }
 
             return;
@@ -103,6 +104,8 @@ public class Tower : MonoBehaviour
             _lineRendererLaser.enabled = true;
         }
 
+        _targetEnemy.TakeDamage(_gamageLaser * Time.deltaTime);
+        _targetEnemy.DebuffSpeed(_debuffSpeedEnemy);
 
         _lineRendererLaser.SetPosition(0, _firePoint.position);
         _lineRendererLaser.SetPosition(1, _target.position);
