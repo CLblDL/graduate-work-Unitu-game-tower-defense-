@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject _gameOverUI;
 
-    public static void LouseLevel()
+    private void Awake()
+    {
+        PlayerStats._gameManager = this;
+    }
+
+    public void LouseLevel()
     {
         Debug.Log("End game!");
+        Time.timeScale = 0;
+        _gameOverUI.SetActive(true);
     }
 }

@@ -10,6 +10,8 @@ public class PlayerStats : MonoBehaviour
     private static int Lives;
     public int _startLives = 20;
 
+    public static GameManager _gameManager;
+
     void Start()
     {
         Money = _startMoney;
@@ -27,8 +29,8 @@ public class PlayerStats : MonoBehaviour
             Lives = 0;
         }
         if(Lives == 0)
-        {
-            GameManager.LouseLevel(); 
+        {           
+            _gameManager.LouseLevel(); 
         }
     }
 
