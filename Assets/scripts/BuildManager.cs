@@ -5,8 +5,10 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     private ToweProject _towerToBuild;
+    private Node _selectedNode;
 
     public static BuildManager _instance;
+    public TowerUI towerUI;
 
     public bool CanBuild { get { return _towerToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.HaveMoneyOnThisTower(_towerToBuild._towerCost); } }
@@ -32,8 +34,30 @@ public class BuildManager : MonoBehaviour
         Debug.Log("Осталось денег" + PlayerStats.ShowMoneyNow());
     }
 
+    public void SelectNode(Node node)
+    {
+        if(_selectedNode == node)
+        {
+            DeselectNode();
+            return;
+        }
+
+        _selectedNode = node;
+        _towerToBuild = null;
+
+        towerUI.SetNode(node);
+    }
+
     public void SelectTowerToBuild(ToweProject selectedProject)
     {
         _towerToBuild = selectedProject;
+        DeselectNode();
+    }
+
+    private void DeselectNode()
+    {
+        _selectedNode = null;
+
+        towerUI.HideTowerUI();
     }
 }

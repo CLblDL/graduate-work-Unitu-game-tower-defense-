@@ -31,14 +31,14 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (!_buildManager.CanBuild)
+        if(_curentTower != null)
         {
+            _buildManager.SelectNode(this);
             return;
         }
 
-        if(_curentTower != null)
+        if (!_buildManager.CanBuild)
         {
-            Debug.Log("Клетка занята");
             return;
         }
 
