@@ -12,13 +12,14 @@ public class BuildManager : MonoBehaviour
 
     public bool CanBuild { get { return _towerToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.HaveMoneyOnThisTower(_towerToBuild._towerCost); } }
+    public ToweProject GetToweProject {get { return _towerToBuild; } }
 
     private void Awake()
     {
         _instance = this;
     }
 
-    public void BuildTowerOn(Node node)
+    /*public void BuildTowerOn(Node node)
     {
         if(!HasMoney)
         {
@@ -32,7 +33,7 @@ public class BuildManager : MonoBehaviour
         node._curentTower = tower;
 
         Debug.Log("Осталось денег" + PlayerStats.ShowMoneyNow());
-    }
+    }*/
 
     public void SelectNode(Node node)
     {

@@ -7,4 +7,5 @@ public class ToweProject
 {
     public GameObject _towerPrefab;
     public int _towerCost;
+    public int _towerUpCost;
 }
