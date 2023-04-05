@@ -12,6 +12,10 @@ public class Tower : MonoBehaviour
     public float _distancsFire = 20f;
     public float _fireRate = 1f;
     private float _fireCountdown = 0f;
+    private int _spentMoney = 0;
+    private int _countUp = 1;
+    private int _costUp;
+    private int _costSell;
 
     [Header("Захват цели")]
 
@@ -57,6 +61,43 @@ public class Tower : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+    }
+
+    public void RegisteringSpentMoney(int money)
+    {
+        _spentMoney += money;
+        RegisteringUpTower();
+        _costSell = (int)(_spentMoney / 2);
+    }
+
+    public int GetSpentMoney()
+    {
+        return _spentMoney;
+    }
+
+    private void RegisteringUpTower()
+    {
+        _countUp += 1;
+    }
+
+    public int GetCountUp()
+    {
+        return _countUp;
+    }
+
+    public void SetCostUp(int money)
+    {
+        _costUp += money;
+    }
+
+    public int GetCostUp()
+    {
+        return _costUp;
+    }
+
+    public int GetCostSell()
+    {
+        return _costSell;
     }
 
     void Update()

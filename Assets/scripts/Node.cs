@@ -61,28 +61,29 @@ public class Node : MonoBehaviour
 
         GameObject tower = Instantiate(towerToBuild._towerPrefab, GetBuildPosition(), Quaternion.identity);
         _curentTower = tower;
+        _curentTower.GetComponent<Tower>().RegisteringSpentMoney(towerToBuild._towerCost);
+        _curentTower.GetComponent<Tower>().SetCostUp(towerToBuild._towerUpCost);
 
-        Debug.Log("Осталось денег" + PlayerStats.ShowMoneyNow());
+       Debug.Log("Осталось денег" + PlayerStats.ShowMoneyNow());
     }
 
     public void UpTower()
     {
+        Tower tower = _curentTower.GetComponent<Tower>();
 
+        int costUp = tower.GetCostUp();
 
-        int towerUpCost = _curentTowerProject._towerUpCost;
-
-        if (!PlayerStats.HaveMoneyOnThisTower(towerUpCost))
+        if (!PlayerStats.HaveMoneyOnThisTower(costUp))
         {
             Debug.Log("Недостаточно денег");
             return;
         }
 
-        PlayerStats.BuyTower(towerUpCost);
+        PlayerStats.BuyTower(costUp);
 
-        Tower tower = _curentTower.GetComponent<Tower>();
         tower._fireRate *= 2;
-
-        _curentTowerProject._towerUpCost *= 2;
+        tower.RegisteringSpentMoney(costUp);
+        tower.SetCostUp(costUp * tower.GetCountUp());
     }
 
     private void OnMouseEnter()
@@ -106,5 +107,13 @@ public class Node : MonoBehaviour
     private void OnMouseExit()
     {
         _rend.material.color = _satrtColor;
+    }
+
+    public void SellTower()
+    {
+        PlayerStats.IncreaseMoney(_curentTower.GetComponent<Tower>().GetCostSell());
+
+        Destroy(_curentTower);
+        _curentTowerProject = null;
     }
 }

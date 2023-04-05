@@ -14116,6 +14116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 950568985}
   _upText: {fileID: 1657896347}
+  _sellText: {fileID: 464814962}
 --- !u!1001 &1641631064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18172,7 +18173,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1640462253}
         m_TargetAssemblyTypeName: TowerUI, Assembly-CSharp
-        m_MethodName: Up
+        m_MethodName: Sell
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
