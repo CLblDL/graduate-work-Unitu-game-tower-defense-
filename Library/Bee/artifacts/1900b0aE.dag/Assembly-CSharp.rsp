@@ -385,6 +385,7 @@
 "Assets/scripts/LivesUI.cs"
 "Assets/scripts/MoneyUI.cs"
 "Assets/scripts/Node.cs"
+"Assets/scripts/PauseMenu.cs"
 "Assets/scripts/PlayerStats.cs"
 "Assets/scripts/Shop.cs"
 "Assets/scripts/ToweProject.cs"
