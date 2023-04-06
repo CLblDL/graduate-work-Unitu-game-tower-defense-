@@ -380,6 +380,7 @@
 "Assets/scripts/Enemy.cs"
 "Assets/scripts/EnemyMovement.cs"
 "Assets/scripts/EnemySpawner.cs"
+"Assets/scripts/EnemyWave.cs"
 "Assets/scripts/GameManager.cs"
 "Assets/scripts/GameOver.cs"
 "Assets/scripts/LivesUI.cs"

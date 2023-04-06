@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
         GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
 
+        EnemySpawner.ReducesEnemiesAlive();
+
         Destroy(gameObject);
     }
 }

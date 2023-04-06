@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Transform _enemyPrefabs;
+    public static int _enemiesAlive = 0;
+
+    public EnemyWave[] _waves;
     public Transform _spawnPoint;
 
     public Text _waveTimer;
@@ -17,10 +19,16 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if (_enemiesAlive > 0)
+        {
+            return;
+        }
+
         if(_contdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             _contdown = _timeBetweenSpawn;
+            return;
         }
 
         _contdown -= Time.deltaTime;
@@ -32,17 +40,28 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        _waveNumber += 1;
-        for (int i = 0; i < _waveNumber; i++)
+        for (int i = 0; i < _waves[_waveNumber]._count; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            SpawnEnemy(_waves[_waveNumber]._enemy);
+            yield return new WaitForSeconds(1f/_waves[_waveNumber]._rate);
+        } 
+        _waveNumber += 1;   
+
+        if(_waveNumber == _waves.Length)
+        {
+            Debug.Log("LEVEL WON");
+            this.enabled = false;
         }
-        
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(_enemyPrefabs, _spawnPoint.position, _spawnPoint.rotation);
+        Instantiate(enemy, _spawnPoint.position, _spawnPoint.rotation);
+        _enemiesAlive++;
+    }
+
+    public static void ReducesEnemiesAlive()
+    {
+        _enemiesAlive--;
     }
 }

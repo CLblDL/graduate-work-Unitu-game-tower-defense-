@@ -37,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         {
             Destroy(gameObject);
             PlayerStats.TakeAweyLives(1);
+            EnemySpawner.ReducesEnemiesAlive();
             return;
         }
 
