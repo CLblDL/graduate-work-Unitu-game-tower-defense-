@@ -2,25 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     public float _startSpeed = 10f;
     [HideInInspector]
     public float _speed;
-    public float _health = 100f;
+    public float _startHealth = 100f;
+    private float _health;
     public int _rewardFordestroy = 25;
+
+    public Image _healthBar;
 
     public GameObject _deathEffect;
 
     private void Start()
     {
         _speed = _startSpeed;
+        _health = _startHealth;
     }
 
     public void TakeDamage(float amount)
     {
         _health -= amount;
+
+        _healthBar.fillAmount = _health / _startHealth;
 
         if(_health <= 0)
         {
