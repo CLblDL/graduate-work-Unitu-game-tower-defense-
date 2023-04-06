@@ -383,6 +383,7 @@
 "Assets/scripts/GameManager.cs"
 "Assets/scripts/GameOver.cs"
 "Assets/scripts/LivesUI.cs"
+"Assets/scripts/LoadScene.cs"
 "Assets/scripts/MoneyUI.cs"
 "Assets/scripts/Node.cs"
 "Assets/scripts/PauseMenu.cs"
