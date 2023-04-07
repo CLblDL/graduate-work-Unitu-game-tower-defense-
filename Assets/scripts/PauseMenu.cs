@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject _pauseMenuUI;
+    public SceneFeder _sceneFeder;
 
     private void Update()
     {
@@ -37,12 +38,12 @@ public class PauseMenu : MonoBehaviour
     public void RetryScene()
     {
         SwitchingPauseMenu();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _sceneFeder.FadeTo(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu(int indexScene)
     {
         SwitchingPauseMenu();
-        SceneManager.LoadScene(indexScene);
+        _sceneFeder.FadeTo(indexScene);
     }
 }

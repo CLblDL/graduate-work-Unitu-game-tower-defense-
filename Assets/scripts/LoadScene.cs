@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+    public SceneFeder _sceneFeder;
+
     public void LoadSceneByIndex(int level)
     {
-        SceneManager.LoadScene(level);
+        _sceneFeder.FadeTo(level);
     }
 
     public void ExitGame()

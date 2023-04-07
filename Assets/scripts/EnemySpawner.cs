@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public EnemyWave[] _waves;
     public Transform _spawnPoint;
 
+    public GameManager _gameManager;
     public Text _waveTimer;
 
     public float _timeBetweenSpawn = 5.9f;
@@ -24,7 +25,13 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        if(_contdown <= 0f)
+        if (_waveNumber >= _waves.Length && _enemiesAlive <= 0)
+        {
+            _gameManager.LevelWin();
+            this.enabled = false;
+        }
+
+        if (_contdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             _contdown = _timeBetweenSpawn;
@@ -40,24 +47,18 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
+        _enemiesAlive = _waves[_waveNumber]._count;
         for (int i = 0; i < _waves[_waveNumber]._count; i++)
         {
             SpawnEnemy(_waves[_waveNumber]._enemy);
             yield return new WaitForSeconds(1f/_waves[_waveNumber]._rate);
         } 
         _waveNumber += 1;   
-
-        if(_waveNumber == _waves.Length)
-        {
-            Debug.Log("LEVEL WON");
-            this.enabled = false;
-        }
     }
 
     private void SpawnEnemy(GameObject enemy)
     {
         Instantiate(enemy, _spawnPoint.position, _spawnPoint.rotation);
-        _enemiesAlive++;
     }
 
     public static void ReducesEnemiesAlive()
